@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    # ???????, ??? ? pgAdmin ???? ?????????? ?????? librarydb
+    url: jdbc:postgresql://localhost:5432/librarydb
+    username: postgres
+    password: '1234'
+
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  port: 8080
+
+upload:
+  path: uploads/
+
