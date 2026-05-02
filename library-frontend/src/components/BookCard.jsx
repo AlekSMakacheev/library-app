@@ -5,12 +5,20 @@ function BookCard({ book, onEdit, onDelete }) {
     <div className="group bg-white rounded-[2.5rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(79,70,229,0.1)] transition-all duration-500 border border-slate-50 flex flex-col h-full relative overflow-hidden">
       
       {/* 1. Верхняя часть: Градиентная заглушка */}
-      <div className="w-full h-44 rounded-[1.8rem] mb-6 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
-        <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity bg-[radial-gradient(circle_at_50%_120%,rgba(79,70,229,1),transparent)]"></div>
-        <span className="text-6xl font-black text-indigo-100 select-none tracking-tighter group-hover:text-indigo-200 transition-colors">
-          {book.title.substring(0, 1).toUpperCase()}
-        </span>
-      </div>
+      {book.coverName ? (
+        <img 
+          src={`http://localhost:8080/uploads/${book.coverName}`} 
+          alt={book.title} 
+          className="w-full h-44 rounded-[1.8rem] mb-6 object-cover shadow-sm group-hover:scale-[1.02] transition-transform"
+        />
+) : (
+  <div className="w-full h-44 rounded-[1.8rem] mb-6 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 flex items-center justify-center relative overflow-hidden group-hover:scale-[1.02] transition-transform">
+    <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity bg-[radial-gradient(circle_at_50%_120%,rgba(79,70,229,0.4),transparent)]"></div>
+    <span className="text-6xl font-black text-indigo-100 select-none tracking-tighter group-hover:text-indigo-200 transition-colors">
+      {book.title.substring(0, 1).toUpperCase()}
+    </span>
+  </div>
+)}
 
       <div className="flex-1 flex flex-col">
         {/* 2. Категория */}

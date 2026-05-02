@@ -86,7 +86,7 @@ function BookForm({ onSave, editingBook, onCancel, categories, isLoading }) {
               />
               <div className="p-6 border-2 border-dashed border-slate-200 rounded-3xl bg-slate-50 group-hover:border-indigo-300 group-hover:bg-indigo-50 transition-all flex items-center justify-center gap-3">
                 <svg className="w-6 h-6 text-slate-400 group-hover:text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-                <span className="text-sm font-bold text-slate-500 group-hover:text-indigo-600">
+                <span className="text-sm truncate font-bold text-slate-500 group-hover:text-indigo-600">
                   {file ? file.name : "Нажмите или перетащите файл"}
                 </span>
               </div>
