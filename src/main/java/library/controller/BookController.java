@@ -37,7 +37,7 @@ public class BookController {
             @RequestParam("author") String author,
             @RequestParam("category") String category,
             @RequestParam(value = "file", required = false) MultipartFile file
-            ) throws IOException {
+    ) throws IOException {
         Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);
@@ -47,14 +47,28 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping( "/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @Valid @RequestBody Book book) {
-        return ResponseEntity.ok(bookService.updateBooK(id, book));
+    @PutMapping(value = "/{id}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Book> updateBook(
+            @PathVariable Long id,
+            @RequestParam("title") String title,
+            @RequestParam("author") String author,
+            @RequestParam("category") String category,
+            @RequestParam(value = "file", required = false) MultipartFile file
+        ) throws IOException {
+
+        Book book = new Book();
+        book.setTitle(title);
+        book.setAuthor(author);
+        book.setCategory(category);
+
+        Book updateBook = bookService.updateBooK(id, book, file);
+
+        return ResponseEntity.ok(updateBook);
     }
 }

@@ -32,17 +32,19 @@ public class Book {
     private String isbn;
 
     private String fileName;
+    private String coverName;
 
     public Book() {
     }
 
-    public Book(String title, String author, String category, String description, String isbn, String fileName) {
+    public Book(String title, String author, String category, String description, String isbn, String fileName, String coverName) {
         this.title = title;
         this.author = author;
         this.category = category;
         this.description = description;
         this.isbn = isbn;
         this.fileName = fileName;
+        this.coverName = coverName;
     }
 
     @Override
@@ -122,5 +124,13 @@ public class Book {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getCoverName() {
+        return coverName;
+    }
+
+    public void setCoverName(String coverName) {
+        this.coverName = coverName;
     }
 }

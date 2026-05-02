@@ -11,6 +11,6 @@ public interface BookService {
     List<Book> findAllBooks();
     Book saveBook(Book book, MultipartFile file) throws IOException;
     void deleteBook(Long id);
-    Book updateBooK(Long id, Book book);
+    Book updateBooK(Long id, Book book, MultipartFile file) throws IOException;
     List<Book> findByCategory(String category);
 }
