@@ -179,7 +179,6 @@ function App() {
         book={viewingBook} 
         onClose={() => setViewingBook(null)} 
       />
-
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-4">
         {isAiOpen && (
           <div className="animate-in slide-in-from-bottom-5 fade-in duration-300 shadow-2xl rounded-2xl overflow-hidden border border-slate-100">
