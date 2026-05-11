@@ -1,16 +1,181 @@
-# React + Vite
+# biblioLOGIC (Library AI Assistant)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интеллектуальная цифровая библиотека с AI-ассистентом для работы с книгами и PDF-документами.
 
-Currently, two official plugins are available:
+## О проекте
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+biblioLOGIC — это fullstack-приложение, которое объединяет цифровую библиотеку и возможности искусственного интеллекта.
 
-## React Compiler
+Пользователь может:
+- загружать PDF-книги
+- просматривать библиотеку
+- взаимодействовать с AI-ассистентом
+- работать с локальными AI-моделями через Ollama
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Проект создан для изучения современных frontend/backend технологий и интеграции AI в веб-приложения.
 
-## Expanding the ESLint configuration
+# Возможности
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Загрузка PDF-книг
+- Просмотр библиотеки
+- Категории книг
+- AI-чат
+- Интеграция с Ollama
+- REST API
+- PostgreSQL
+- Современный UI на React
+
+
+# Технологии
+
+## Frontend
+- React
+- Vite
+- JavaScript
+- Tailwind CSS
+
+## Backend
+- Java
+- Spring Boot
+- Spring Data JPA
+- Spring Web
+- Maven
+
+## Database
+- PostgreSQL
+
+## AI
+- Ollama
+- Spring AI
+
+# Структура проекта
+
+```bash
+library/
+│
+├── library-frontend/   # React frontend
+├── src/main/java/      # Spring Boot backend
+├── uploads/            # Загруженные PDF
+├── pom.xml
+└── README.md
+```
+
+# Установка и запуск
+
+## 1. Клонирование проекта
+
+```bash
+git clone YOUR_REPOSITORY_URL
+cd library
+```
+# Backend запуск
+
+## 1. Создание базы данных
+
+```sql
+CREATE DATABASE library_db;
+```
+## 2. Настройка application.properties
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/library_db
+spring.datasource.username=postgres
+spring.datasource.password=your_password
+```
+
+## 3. Запуск backend
+
+### Windows
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+### Linux / MacOS
+
+```bash
+./mvnw spring-boot:run
+```
+
+Backend:
+
+```bash
+http://localhost:8080
+```
+
+# Frontend запуск
+
+## Переход в frontend
+
+```bash
+cd library-frontend
+```
+
+## Установка зависимостей
+
+```bash
+npm install
+```
+
+## Запуск проекта
+
+```bash
+npm run dev
+```
+
+Frontend:
+
+```bash
+http://localhost:5173
+```
+
+# Ollama Setup
+
+Установите Ollama:
+https://ollama.com
+
+Скачайте модель:
+
+```bash
+ollama pull llama3
+```
+
+Запустите Ollama:
+
+```bash
+ollama serve
+```
+
+# Будущие улучшения
+
+- AI memory
+- JWT authentication
+- Docker support
+- RAG system
+- Semantic search
+- AI analysis of uploaded books
+
+
+# Скриншоты
+
+Добавьте сюда скриншоты интерфейса проекта.
+
+```md
+![Главный экран](./screenshots/main_screen.png)
+![ИИ](./screenshots/AI_screen.png)
+![Добавить источник](./screenshots/add_screen.png)
+```
+
+# Цель проекта
+
+Проект создан для изучения:
+- Fullstack разработки
+- React
+- Spring Boot architecture
+- REST API
+- PostgreSQL
+- Интеграции AI
+
+# Автор
+
+AlekSMakacheev
