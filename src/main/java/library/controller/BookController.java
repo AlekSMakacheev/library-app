@@ -1,6 +1,5 @@
 package library.controller;
 
-import jakarta.validation.Valid;
 import library.entity.Book;
 import library.service.interfaces.BookService;
 import org.springframework.http.HttpStatus;

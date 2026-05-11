@@ -14,15 +14,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // Отключаем защиту для POST запросов
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configure(http))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/books/**", "/swagger-ui/**", "/v3/api-docs/**", "/uploads/**").permitAll() // Разрешаем доступ к API и Swagger
+                        .requestMatchers("/api/books/**", "/api/ai/**", "/swagger-ui/**", "/v3/api-docs/**", "/uploads/**").permitAll() // Разрешаем доступ к API и Swagger
                         .anyRequest().permitAll()
                 )
-                .formLogin(AbstractHttpConfigurer::disable) // Отключаем ту самую форму логина
-                .httpBasic(AbstractHttpConfigurer::disable); // Оставляем базовую аутентификацию (на всякий случай)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
-
 }

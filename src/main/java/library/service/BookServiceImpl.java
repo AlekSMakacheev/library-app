@@ -3,6 +3,8 @@ package library.service;
 import library.entity.Book;
 import library.repository.BookRepository;
 import library.service.interfaces.BookService;
+import library.service.interfaces.FileService;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,9 +26,11 @@ public class BookServiceImpl implements BookService {
     private String uploadPath;
 
     private final BookRepository bookRepository;
+    private final FileService fileService;
 
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, FileService fileService) {
         this.bookRepository = bookRepository;
+        this.fileService = fileService;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class BookServiceImpl implements BookService {
     public Book saveBook(Book book, MultipartFile file) throws  IOException {
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -60,6 +64,18 @@ public class BookServiceImpl implements BookService {
 
             String coverName = generateCover(resultFileName);
             book.setCoverName(coverName);
+
+            try {
+                String extractedText = fileService.extractTextFromPdf(resultFileName);
+
+                String aiDescription = fileService.generateSummary(extractedText);
+
+                book.setDescription(aiDescription);
+
+            } catch (Exception e) {
+                book.setDescription("Книга загружена, но ИИ не смог проанализировать текст.");
+                e.printStackTrace();
+            }
         }
         return bookRepository.save(book);
     }
@@ -126,7 +142,7 @@ public class BookServiceImpl implements BookService {
         String coverName = pdfFileName.replace(".pdf", "") + "_cover.jpg";
         java.nio.file.Path coverPath = java.nio.file.Paths.get(uploadPath).resolve(coverName);
 
-        try (PDDocument document = PDDocument.load(pdfPath.toFile())) {
+        try (PDDocument document = Loader.loadPDF(pdfPath.toFile())) {
             PDFRenderer pdfRenderer = new PDFRenderer(document);
 
             BufferedImage bim = pdfRenderer.renderImageWithDPI(0, 300);

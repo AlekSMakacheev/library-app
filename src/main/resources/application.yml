@@ -21,6 +21,17 @@ spring:
       max-file-size: 50MB
       max-request-size: 50MB
 
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: qwen2:0.5b
+
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.function.context.config.ContextFunctionCatalogAutoConfiguration
+
 server:
   port: 8080
 
